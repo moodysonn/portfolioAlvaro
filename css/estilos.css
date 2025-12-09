@@ -216,7 +216,6 @@ body {
 .rejillaProyectos {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    /* escritorio grande por defecto */
     gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
@@ -664,7 +663,6 @@ body {
     background: #27ae60;
 }
 
-/* ===== Trayectoria e idiomas ===== */
 @media (max-width: 768px) {
     .seccionTrayectoria {
         padding: 4rem 5%;
@@ -690,7 +688,6 @@ body {
     }
 }
 
-/* ===== Inicio (hero) y layout general hasta tablet ===== */
 @media (max-width: 1024px) {
     .seccionInicio {
         margin-top: 4rem;
@@ -715,7 +712,6 @@ body {
         max-width: 100%;
     }
 
-    /* tablet: 2 proyectos por fila */
     .rejillaProyectos {
         grid-template-columns: repeat(2, minmax(260px, 1fr));
         max-width: 960px;
@@ -731,7 +727,6 @@ body {
         background-position: center;
     }
 
-    /* tablet: 3 columnas de tecnologías */
     .rejillaTecnologias {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
@@ -750,7 +745,6 @@ body {
     }
 }
 
-/* ===== Móvil (navegación y secciones) ===== */
 @media (max-width: 768px) {
     .menuHamburguesa {
         display: flex;
@@ -815,7 +809,6 @@ body {
         padding: 4rem 5%;
     }
 
-    /* móvil: 1 proyecto por fila */
     .rejillaProyectos {
         grid-template-columns: 1fr;
         max-width: 480px;
@@ -832,7 +825,6 @@ body {
         height: 220px;
     }
 
-    /* móvil: 2 tecnologías por fila */
     .rejillaTecnologias {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.2rem;
@@ -846,7 +838,6 @@ body {
     }
 }
 
-/* ===== Móvil pequeño ===== */
 @media (max-width: 480px) {
     .seccionInicio h1 {
         font-size: 2rem;
@@ -865,7 +856,6 @@ body {
         height: 200px;
     }
 
-    /* móvil pequeño: 1 tecnología por fila */
     .rejillaTecnologias {
         grid-template-columns: 1fr;
         max-width: 380px;
@@ -873,7 +863,6 @@ body {
     }
 }
 
-/* ===== Escritorio grande: 4 proyectos por fila ===== */
 @media (min-width: 1200px) {
     .rejillaProyectos {
         max-width: 140
