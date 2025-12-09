@@ -1,97 +1,102 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-    document.querySelectorAll('a[href^="#"]').forEach(elm=>{
+    const enlacesSeccion=document.querySelectorAll('a[href^="#"]');
+    
+    enlacesSeccion.forEach(enlaceNavegacion=>{
         
-        elm.addEventListener("click", function(e){
+        enlaceNavegacion.addEventListener("click", function(eventoClick){
             
-            e.preventDefault();
+            eventoClick.preventDefault();
             
-            let targetId=this.getAttribute("href");
+            const idObjetivo=this.getAttribute("href");
             
-            if(targetId=="#"){
+            if(idObjetivo==="#"){
                 return;
             }
             
-            let targetElement=document.querySelector(targetId);
+            const elementoObjetivo=document.querySelector(idObjetivo);
             
-            if(targetElement){
+            if(elementoObjetivo){
                 
                 window.scrollTo({
-                    top: targetElement.offsetTop-80,
+                    top: elementoObjetivo.offsetTop-80,
                     behavior: "smooth"
                 });
                 
-                navLinks.classList.remove("active");
+                listaEnlacesNavegacion.classList.remove("active");
                 document.body.style.overflow="auto";
             }
         });
     });
 
-    let hamburger=document.querySelector(".hamburger");
-    let navLinks=document.querySelector(".nav-links");
-    let navLinksItems=document.querySelectorAll(".nav-links li a");
+    const botonMenuHamburguesa=document.querySelector(".menuHamburguesa");
+    const listaEnlacesNavegacion=document.querySelector(".listaNavegacion");
+    const enlacesMenuNavegacion=document.querySelectorAll(".listaNavegacion li a");
 
-    hamburger.addEventListener("click", function(){
-        navLinks.classList.toggle("active");
-        document.body.style.overflow=navLinks.classList.contains("active")?"hidden":"auto";
+    botonMenuHamburguesa.addEventListener("click", function(){
+        listaEnlacesNavegacion.classList.toggle("active");
+        document.body.style.overflow=listaEnlacesNavegacion.classList.contains("active")?"hidden":"auto";
         
         this.classList.toggle("active");
     });
 
-    navLinksItems.forEach(e=>{
-        e.addEventListener("click", function(){
+    enlacesMenuNavegacion.forEach(enlaceMenu=>{
+        
+        enlaceMenu.addEventListener("click", function(){
             
             if(window.innerWidth<=768){
-                navLinks.classList.remove("active");
-                document.body.style.overflow="auto";
-                hamburger.classList.remove("active");
+                listaEnlacesNavegacion.classList.remove("active");
+                document.body.style.overflow = "auto";
+                botonMenuHamburguesa.classList.remove("active");
             }
         });
     });
 
     window.addEventListener("scroll", function(){
-        let navbar=document.querySelector(".navbar");
+        
+        const barraNavegacionFija=document.querySelector(".barraNavegacion");
         
         if(window.scrollY>50){
-            navbar.style.background="rgba(255, 255, 255, 0.98)";
-            navbar.style.boxShadow="0 2px 10px rgba(0, 0, 0, 0.1)";
+            barraNavegacionFija.style.background="rgba(255, 255, 255, 0.98)";
+            barraNavegacionFija.style.boxShadow="0 2px 10px rgba(0, 0, 0, 0.1)";
         } 
         else{
-            navbar.style.background="var(--white)";
-            navbar.style.boxShadow="0 2px 10px rgba(0, 0, 0, 0.1)";
+            barraNavegacionFija.style.background="var(--white)";
+            barraNavegacionFija.style.boxShadow="0 2px 10px rgba(0, 0, 0, 0.1)";
         }
     });
 
-    let animateOnScroll=function(){
-        let elements=document.querySelectorAll(".project-card, .tech-item, .form-group");
+    const aplicarAnimacionScroll=function(){
         
-        elements.forEach(e=>{
+        const elementosAnimables=document.querySelectorAll(".tarjetaProyecto, .tarjetaTecnologia, .grupoFormulario");
+        
+        elementosAnimables.forEach(elementoAnimable=>{
+            const posicionElementoPantalla=elementoAnimable.getBoundingClientRect().top;
+            const umbralPantalla=window.innerHeight/1.3;
             
-            let elementPosition=e.getBoundingClientRect().top;
-            let screenPosition=window.innerHeight/1.3;
-            
-            if(elementPosition<screenPosition){
-                e.style.opacity="1";
-                e.style.transform="translateY(0)";
+            if(posicionElementoPantalla<umbralPantalla){
+                elementoAnimable.style.opacity="1";
+                elementoAnimable.style.transform="translateY(0)";
             }
         });
     };
 
-    let animateElements=document.querySelectorAll('.project-card, .tech-item, .form-group');
-    animateElements.forEach(e=>{
-        e.style.opacity="0";
-        e.style.transform="translateY(20px)";
-        e.style.transition="opacity 0.5s ease, transform 0.5s ease";
+    const elementosAnimacionInicial=document.querySelectorAll(".tarjetaProyecto, .tarjetaTecnologia, .grupoFormulario");
+    
+    elementosAnimacionInicial.forEach(elemento=>{
+        elemento.style.opacity = "0";
+        elemento.style.transform = "translateY(20px)";
+        elemento.style.transition = "opacity 0.5s ease, transform 0.5s ease";
     });
 
-    window.addEventListener("load", animateOnScroll);
-    window.addEventListener("scroll", animateOnScroll);
+    window.addEventListener("load", aplicarAnimacionScroll);
+    window.addEventListener("scroll", aplicarAnimacionScroll);
 
-    let contactForm=document.querySelector(".contact-form");
+    const formularioContactoPrincipal=document.querySelector(".formularioContacto");
     
-    if(contactForm){
-        contactForm.addEventListener("submit", function(e){
-            e.preventDefault();
+    if(formularioContactoPrincipal){ 
+        formularioContactoPrincipal.addEventListener("submit", function(eventoSubmit){
+            eventoSubmit.preventDefault();
             alert("¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.");
             this.reset();
         });
